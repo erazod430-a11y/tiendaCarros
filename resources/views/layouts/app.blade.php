@@ -153,10 +153,11 @@
                         </a>
                     </li>
  
+                    
                     <li class="nav-item">
                         <a
                             class="nav-link {{ request()->routeIs('nosotros') ? 'active' : '' }}"
-                            href="#"
+                            href="{{ route( 'nosotros' ) }}"
                         >
                             Nosotros
                         </a>
@@ -165,7 +166,7 @@
                     <li class="nav-item">
                         <a
                             class="nav-link {{ request()->routeIs('contacto') ? 'active' : '' }}"
-                            href="#"
+                            href="{{ route( 'contacto' ) }}"
                         >
                             Contacto
                         </a>
