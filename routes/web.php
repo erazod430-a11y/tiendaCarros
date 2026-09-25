@@ -19,3 +19,7 @@ Route::get('/nosotros', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
+
+Route::get('/formulario', function () {
+    return view('formulario');
+})->name('formulario');

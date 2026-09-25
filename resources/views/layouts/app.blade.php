@@ -170,6 +170,17 @@
                         >
                             Contacto
                         </a>
+
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {{ request()->routeIs('formulario') ? 'active' : '' }}"
+                            href="{{ route( 'formulario' ) }}"
+                        >
+                            formulario
+                        </a>
+
+
                     </li>
                 </ul>
             </div>
