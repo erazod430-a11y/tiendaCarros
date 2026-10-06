@@ -1,17 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ClienteController;
+
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/menu', function () {
     return view('menu');
 })->name('menu');
-
-
-
 
 Route::get('/nosotros', function () {
     return view('nosotros');
@@ -27,3 +24,8 @@ Route::get('/formulario', function () {
 
 Route::get('/clientes', [ClienteController::class, 'index'])
     ->name('clientes.index');
+
+
+
+
+    
