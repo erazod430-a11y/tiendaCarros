@@ -179,6 +179,14 @@
                         >
                             clientes.index
                         </a>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {{ request()->routeIs('clientes.productos') ? 'active' : '' }}"
+                            href="{{ route( 'clientes.productos' ) }}"
+                        >
+                            productos.index
+                        </a>
+                    
 
 
                     </li>

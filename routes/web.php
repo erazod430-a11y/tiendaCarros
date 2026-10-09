@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductosController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,9 @@ Route::get('/formulario', function () {
 
 Route::get('/clientes', [ClienteController::class, 'index'])
     ->name('clientes.index');
+
+ Route::get('/productos', [productosController::class, 'index'])
+    ->name('clientes.productos');   
 
 
 
