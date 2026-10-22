@@ -19,6 +19,7 @@ Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
 
+
 Route::get('/formulario', function () {
     return view('formulario');
 })->name('formulario');
@@ -28,6 +29,15 @@ Route::get('/clientes', [ClienteController::class, 'index'])
 
  Route::get('/productos', [productosController::class, 'index'])
     ->name('clientes.productos');   
+
+
+    # creacion de formulario registro
+
+Route::get('/clientes/crear', [ClienteController::class, 'create'])
+    ->name('clientes.create');
+
+Route::post('/clientes', [ClienteController::class, 'store'])
+    ->name('clientes.store');
 
 
 
