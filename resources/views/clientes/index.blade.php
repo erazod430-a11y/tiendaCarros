@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title', 'Clientes registrados')
@@ -16,9 +17,10 @@
         </a>
     </div>
 
-    @if (session('exito'))
+    {{-- Paso 7: Mostrar el mensaje de confirmación --}}
+    @if (session('success'))
         <div class="alert alert-success">
-            {{ session('exito') }}
+            {{ session('success') }}
         </div>
     @endif
 
@@ -35,8 +37,10 @@
                             <th>Ciudad</th>
                             <th>Mensaje</th>
                             <th>Fecha</th>
+                            <th>Editar</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @forelse ($clientes as $cliente)
                             <tr>
@@ -46,11 +50,21 @@
                                 <td>{{ $cliente->telefono }}</td>
                                 <td>{{ $cliente->ciudad }}</td>
                                 <td>{{ $cliente->mensaje }}</td>
-                                <td>{{ $cliente->created_at->format('d/m/Y H:i') }}</td>
+                                <td>
+                                    {{ $cliente->created_at->format('d/m/Y H:i') }}
+                                </td>
+                                <td>
+                                    <a
+                                        href="{{ route('clientes.edit', $cliente) }}"
+                                        class="btn btn-warning btn-sm">
+                                        Editar
+                                    </a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center py-4 text-secondary">
+                                <td colspan="7"
+                                    class="text-center py-4 text-secondary">
                                     Todavía no existen registros.
                                 </td>
                             </tr>
