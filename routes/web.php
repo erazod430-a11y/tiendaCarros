@@ -6,66 +6,81 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductosController;
 
-// Rutas protegidas por autenticación
-Route::middleware('auth')->group(function () {
+/*
+|--------------------------------------------------------------------------
+| Rutas protegidas de ELITE MOTORS
+|--------------------------------------------------------------------------
+| Todas las páginas requieren que el usuario haya iniciado sesión.
+*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/menu', function () {
-    return view('menu');
-})->name('menu');
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/nosotros', function () {
-    return view('nosotros');
-})->name('nosotros');
+    // Página principal
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
 
-Route::get('/contacto', function () {
-    return view('contacto');
-})->name('contacto');
+    // Menú principal
+    Route::get('/menu', function () {
+        return view('menu');
+    })->name('menu');
 
+    // Nosotros
+    Route::get('/nosotros', function () {
+        return view('nosotros');
+    })->name('nosotros');
 
-Route::get('/formulario', function () {
-    return view('formulario');
-})->name('formulario');
+    // Contacto
+    Route::get('/contacto', function () {
+        return view('contacto');
+    })->name('contacto');
 
-Route::get('/clientes', [ClienteController::class, 'index'])
-    ->name('clientes.index');
-
- Route::get('/productos', [productosController::class, 'index'])
-    ->name('clientes.productos');   
-
-
-    # creacion de formulario registro
-
-Route::get('/clientes/crear', [ClienteController::class, 'create'])
-    ->name('clientes.create');
-
-Route::post('/clientes', [ClienteController::class, 'store'])
-    ->name('clientes.store');
-
-    #creacion de rutas de edicion
-
-Route::get(
-    '/clientes/{cliente}/editar',
-    [ClienteController::class, 'edit']
-)->name('clientes.edit');
-
-Route::put(
-    '/clientes/{cliente}',
-    [ClienteController::class, 'update']
-)->name('clientes.update');
-
-});
+    // Formulario
+    Route::get('/formulario', function () {
+        return view('formulario');
+    })->name('formulario');
 
 
-// Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    /*
+    |--------------------------------------------------------------------------
+    | Clientes
+    |--------------------------------------------------------------------------
+    */
 
-// Perfil de usuario
-Route::middleware('auth')->group(function () {
+    Route::get('/clientes', [ClienteController::class, 'index'])
+        ->name('clientes.index');
+
+    Route::get('/clientes/crear', [ClienteController::class, 'create'])
+        ->name('clientes.create');
+
+    Route::post('/clientes', [ClienteController::class, 'store'])
+        ->name('clientes.store');
+
+    Route::get('/clientes/{cliente}/editar', [ClienteController::class, 'edit'])
+        ->name('clientes.edit');
+
+    Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])
+        ->name('clientes.update');
+
+
+   
+
+    Route::get('/productos', [ProductosController::class, 'index'])
+        ->name('productos.index');
+
+
+   
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Perfil del usuario
+    |--------------------------------------------------------------------------
+    */
 
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');
@@ -77,5 +92,12 @@ Route::middleware('auth')->group(function () {
         ->name('profile.destroy');
 
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Autenticación Laravel Breeze
+|--------------------------------------------------------------------------
+*/
 
 require __DIR__.'/auth.php';
